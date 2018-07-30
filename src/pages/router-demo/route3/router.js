@@ -1,29 +1,32 @@
 import React from 'react'
-import {HashRouter as Router, Route, Switch} from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import About from './about'
 import Main from './main'
-import About from '../route1/about'
-import Topic from '../route1/topic'
+import Topics from './topics'
 import Home from './home'
 import Info from './info'
 import NoMatch from './nomatch'
 
 export default class IRouter extends React.Component {
-  render () {
-    return (
-      <Router>
-        <Home>
-          <Switch>
-            <Route path="/main" render={() =>
-              <Main>
-                <Route path="/main/:value" component={Info}></Route>
-              </Main>
-            }></Route>
-            <Route path="/about" component={About}></Route>
-            <Route path="/topic" component={Topic}></Route>
-            <Route component={NoMatch}></Route>
-          </Switch>
-        </Home>
-      </Router>
-    )
-  }
-} 
+    render () {
+        return (
+            <div>
+                <Router>
+                    {/* Route必须包一个根节点 */}
+                    <Home>
+                        <Switch>
+                            <Route path="/main" render={() => 
+                                <Main>
+                                    <Route path="/main/:mainId" component={Info}></Route>
+                                </Main>
+                            }/>
+                            <Route path="/about" component={About} />
+                            <Route path="/topics" component={Topics} />
+                            <Route component={NoMatch}></Route>
+                        </Switch>
+                    </Home>
+                </Router>
+            </div>
+        )
+    }
+}

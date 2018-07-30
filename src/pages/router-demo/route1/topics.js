@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default class NoMatch extends React.Component {
+export default class Topics extends React.Component {
     render () {
         return (
             <div>
-                This is NoMatch Page
+                This is Topics Page
             </div>
         )
     }

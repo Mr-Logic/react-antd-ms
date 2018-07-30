@@ -150,12 +150,10 @@ module.exports = {
             loader: require.resolve('babel-loader'),
             options: {
               plugins: [
-                [
-                  'import', [{
-                    libraryName: 'antd',
-                    style: true
-                  }]
-                ]
+                ['import', [{
+                  libraryName: 'antd',
+                  style: true
+                }]]
               ],
               compact: true,
             },

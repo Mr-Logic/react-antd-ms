@@ -1,17 +1,20 @@
 @import './default.less';
+
 .container {
-  .nav-left {
-    color: #fff;
-    height: calc(100vh);
-    background-color: #001529;
-  }
-  .main {
-    background-color: @colorL;
-    height: calc(100vh);
-    overflow: auto;
-    .content {
-      position: relative;
-      padding: 20px;
+    // 此处设置flex布局、右侧设置flex1目的：是为了避免设置左侧导航最小宽度后浏览器缩小后内容区换行
+    display: flex;
+    .nav-left {
+        height: calc(100vh);
+        background-color: #001529;
+        min-width: 180px;
     }
-  }
+    .main {
+        background-color: @colorK;
+        height: calc(100vh);
+        flex: 1;
+        overflow: auto;
+        .content {
+            padding: 2px;
+        }
+    }
 }
