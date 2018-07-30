@@ -12,6 +12,7 @@ class FormLogin extends React.Component {
                 message.success(`
                     ${userInfo.userName} 恭喜你，通过校验!
                 `)
+                console.log(userInfo)
             }
         })
     }
@@ -34,7 +35,7 @@ class FormLogin extends React.Component {
                 </Card>
                 <Card title="登录水平表单" style={{ marginTop: 16 }}>
                     <Form style={{ width: 300 }}>
-                    <FormItem>
+                        <FormItem>
                             {
                                 getFieldDecorator('userName', {
                                     initialValue: '',
