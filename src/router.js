@@ -12,6 +12,8 @@ import Messages from './pages/ui/messages'
 import MyTabs from './pages/ui/tabs'
 import Gallery from './pages/ui/gallery'
 import MyCarousel from './pages/ui/carousel'
+import FormLogin from './pages/form/login'
+import FormRegist from './pages/form/regist'
 import NoMatch from './pages/nomatch'
 
 export default class IRouter extends React.Component {
@@ -32,6 +34,8 @@ export default class IRouter extends React.Component {
                                 <Route path="/admin/ui/tabs" component={MyTabs}></Route>
                                 <Route path="/admin/ui/gallery" component={Gallery}></Route>
                                 <Route path="/admin/ui/carousel" component={MyCarousel}></Route>
+                                <Route path="/admin/form/login" component={FormLogin}></Route>
+                                <Route path="/admin/form/regist" component={FormRegist}></Route>
                                 <Route component={NoMatch}></Route>
                             </Switch>
                         </Admin>
