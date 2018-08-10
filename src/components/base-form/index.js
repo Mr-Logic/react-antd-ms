@@ -91,6 +91,17 @@ class BaseForm extends React.Component {
                         </FormItem>
                     )
                     formItemList.push(CHECKBOX)
+                } else if (item.type === 'DATE') {
+                    const DatePicke = (
+                        <FormItem label={label} key={field}>
+                           {
+                                getFieldDecorator([field])(
+                                    <DatePicker showTime={true} placeholder={placeholder} style={{width: 172}} format="YYYY-MM-DD HH:mm:ss"/>
+                                )
+                            }
+                        </FormItem>
+                    )
+                    formItemList.push(DatePicke)
                 }
             })
         }

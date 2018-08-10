@@ -141,46 +141,56 @@ export default class Order extends React.Component {
         const columns = [
             {
                 title: '订单编号',
-                dataIndex: 'order_sn'
+                dataIndex: 'order_sn',
+                key: 'order_sn'
             },
             {
                 title: '车辆编号',
-                dataIndex: 'bike_sn'
+                dataIndex: 'bike_sn',
+                key: 'bike_sn'
             },
             {
                 title: '用户名',
-                dataIndex: 'user_name'
+                dataIndex: 'user_name',
+                key: 'user_name'
             },
             {
                 title: '手机号',
-                dataIndex: 'mobile'
+                dataIndex: 'mobile',
+                key: 'mobile'
             },
             {
                 title: '里程',
                 dataIndex: 'distance',
+                key: 'distance',
                 render (distance) {
                     return distance / 1000 + 'Km'
                 }
             },
             {
                 title: '行驶时长',
-                dataIndex: 'total_time'
+                dataIndex: 'total_time',
+                key: 'total_time'
             },
             {
                 title: '状态',
-                dataIndex: 'status'
+                dataIndex: 'status',
+                key: 'status'
             },
             {
                 title: '开始时间',
-                dataIndex: 'start_time'
+                dataIndex: 'start_time',
+                key: 'start_time'
             },
             {
                 title: '结束时间',
-                dataIndex: 'end_time'
+                dataIndex: 'end_time',
+                key: 'end_time'
             },
             {
                 title: '订单金额',
-                dataIndex: 'user_pay'
+                dataIndex: 'user_pay',
+                key: 'user_pay'
             }
         ]
         const formItemLayout = {
@@ -208,7 +218,7 @@ export default class Order extends React.Component {
                         dataSource={this.state.list}
                         selectedRowKeys={this.state.selectedRowKeys}
                         pagination={this.state.pagination}
-                        rowSelection="checkbox"
+                        rowSelection="radio"
                         selectedIds={this.state.selectedIds}
                         selectedItem={this.state.selectedItem}
                     />
