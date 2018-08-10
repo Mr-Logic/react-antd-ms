@@ -38,7 +38,7 @@ class BaseForm extends React.Component {
                         <FormItem label="~" colon={false} key={field}>
                             {
                                 getFieldDecorator('end_time')(
-                                    <DatePicker showTiem={true} placeholder="结束时间" style={{width: 172}} format="YYYY-MM-DD HH:mm:ss"/>
+                                    <DatePicker showTime={true} placeholder="结束时间" style={{width: 172}} format="YYYY-MM-DD HH:mm:ss"/>
                                 )
                             }
                         </FormItem>

@@ -3,6 +3,7 @@ import { Card, Form, Select, Button, Table, DatePicker, Modal, message } from 'a
 import axios from '../../axios'
 import utils from '../../utils/utils.js'
 import BaseForm from '../../components/base-form'
+import ETable from '../../components/e-table'
 
 const FormItem = Form.Item
 const Option = Select.Option
@@ -54,29 +55,29 @@ export default class Order extends React.Component {
     }
     handleFilter = (params) => {
         this.params = params
-        console.log(this.params)
         this.requestList()
     }
     requestList = () => {
-        let _this = this
-        axios.ajax({
-            url: '/order/list', 
-            data: {
-                params: this.params
-            }
-        }).then((res) => {
-            let list = res.result.item_list.map((item, index) =>{
-                item.key = index
-                return item
-            })
-            this.setState({
-                list,
-                pagination: utils.pagination(res, (current) => {
-                    _this.params.page = current
-                    _this.requestList()
-                })
-            })
-        })
+        axios.requestList(this, '/order/list', this.params, true)
+        // let _this = this
+        // axios.ajax({
+        //     url: '/order/list', 
+        //     data: {
+        //         params: this.params
+        //     }
+        // }).then((res) => {
+        //     let list = res.result.item_list.map((item, index) =>{
+        //         item.key = index
+        //         return item
+        //     })
+        //     this.setState({
+        //         list,
+        //         pagination: utils.pagination(res, (current) => {
+        //             _this.params.page = current
+        //             _this.requestList()
+        //         })
+        //     })
+        // })
     }
     // 打开结束订单弹框
     handleFinishOrder = () => {
@@ -124,23 +125,7 @@ export default class Order extends React.Component {
             }
         })
     }
-    onRowClick = (record, index) => {
-        let selectKey = [index]
-        this.setState({
-            selectedRowKeys: selectKey,
-            selectedItem: record
-        })
-        // Modal.info({
-        //     title: '信息',
-        //     // content: `${this.state.selectedRowKeys}, ${this.state.selectedItem}`
-        //     content: `${selectKey}, ${record}`
-        // })
-        // state不会实时更新，定时器内部的是点击的值，定时器外部的是点击的上一次的值
-        // console.log(this.state.selectedRowKeys)
-        // setTimeout(() => {
-        //     console.log(this.state.selectedRowKeys)
-        // }, 1)
-    }
+
     openOrderDetail = () => {
         let item = this.state.selectedItem
         if (!item) {
@@ -206,11 +191,7 @@ export default class Order extends React.Component {
                 span: 19
             }
         }
-        const selectedRowKeys = this.state.selectedRowKeys
-        const rowSelection = {
-            type: 'radio',
-            selectedRowKeys
-        }
+       
         return (
             <div>
                 <Card>
@@ -221,19 +202,15 @@ export default class Order extends React.Component {
                     <Button type="primary" style={{marginLeft: 16}} onClick={this.handleFinishOrder}>结束订单</Button>
                 </Card>
                 <div className="content-wrap">
-                    <Table 
-                        bordered
+                    <ETable
+                        updateSelectedItem={utils.updateSelectedItem.bind(this)}
                         columns={columns}
                         dataSource={this.state.list}
+                        selectedRowKeys={this.state.selectedRowKeys}
                         pagination={this.state.pagination}
-                        rowSelection={rowSelection}
-                        onRow={(record, index) => {
-                            return {
-                                onClick: () => {
-                                    this.onRowClick(record, index)
-                                }
-                            }
-                        }}
+                        rowSelection="checkbox"
+                        selectedIds={this.state.selectedIds}
+                        selectedItem={this.state.selectedItem}
                     />
                 </div>
                 <Modal
